@@ -2,6 +2,8 @@
 
 Understand Data Structures with pictorial representations and animations.
 
+Visualize Data Structures at [https://mslalith.github.io/visualize_ds](https://mslalith.github.io/visualize_ds "Visualize Data Structures")
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
