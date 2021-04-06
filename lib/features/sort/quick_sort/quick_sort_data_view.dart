@@ -5,8 +5,7 @@ import 'package:visualize_data_structures/core/fonts/fonts.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'quick_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_provider.dart';
 
 class QuickSortDataView extends StatefulWidget {
   @override
@@ -14,7 +13,7 @@ class QuickSortDataView extends StatefulWidget {
 }
 
 class _QuickSortDataViewState extends State<QuickSortDataView> {
-  QuickSortProvider provider;
+  late QuickSortProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +43,8 @@ class _QuickSortDataViewState extends State<QuickSortDataView> {
                     if (provider.iIndex >= 0 &&
                         provider.iIndex < provider.arraySize)
                       _buildText('array[i]\t=\t${provider.iThValue}'),
-                    if (provider.jIndex >= 0 &&
-                        provider.jIndex < provider.arraySize)
+                    if (provider.jIndex! >= 0 &&
+                        provider.jIndex! < provider.arraySize)
                       _buildText('array[j]\t=\t${provider.jThValue}'),
                   ],
                 );
@@ -112,14 +111,12 @@ class _QuickSortDataViewState extends State<QuickSortDataView> {
       ),
     );
 
-    if (isMobile)
-      child = Expanded(child: child);
+    if (isMobile) child = Expanded(child: child);
 
     // Since RawKeyboardListener is not working properly in release mode.
     // The next and previous buttons are made visible.
     // Once the bug is fixed by the Flutter team, the below line will be removed.
     isMobile = true;
-
 
     return Card(
       color: Colors.transparent,
@@ -175,7 +172,7 @@ class _QuickSortDataViewState extends State<QuickSortDataView> {
         SizedBox(width: 16.0),
         Text(
           list[2],
-          style: Theme.of(context).textTheme.headline,
+          style: Theme.of(context).textTheme.headline5,
         ),
         SizedBox(width: 16.0),
         Column(
@@ -222,7 +219,7 @@ class _QuickSortDataViewState extends State<QuickSortDataView> {
         provider.isPartitionState ||
         provider.isSwapState) {
       int i = provider.iIndex;
-      int j = provider.jIndex;
+      int j = provider.jIndex!;
       list.add(i.toString());
       list.add('i');
       list.add(i <= j ? '<=' : '>');
@@ -257,22 +254,22 @@ class _QuickSortDataViewState extends State<QuickSortDataView> {
         text =
             '${provider.jThValue} is smaller than ${provider.pivotValue}. It should be in the left part of pivot, so we compare it with `i`';
     } else if (provider.isCompareState || provider.isSwapState) {
-      if (provider.iIndex <= provider.jIndex)
+      if (provider.iIndex <= provider.jIndex!)
         text =
             'since `i` index ${provider.iIndex} is less than ${provider.iIndex == provider.jIndex ? 'or equal to' : ''} `j` index ${provider.jIndex}, their values are in wrong positions, so we swap them';
       else
         text =
             'since `i` index ${provider.iIndex} is greater than `j` index ${provider.jIndex}, we skip them and move onto next';
     } else if (provider.isPartitionState) {
-      if (provider.iIndex <= provider.jIndex)
+      if (provider.iIndex <= provider.jIndex!)
         text =
             'since `i` index ${provider.iIndex} is less than ${provider.iIndex == provider.jIndex ? 'or equal to' : ''} `j` index ${provider.jIndex}, we continue again to find the left maximum value and right minimum value.\nRemember that the value in `p` may change but pivot value will not change';
       else {
         text =
             'since `i` index ${provider.iIndex} is greater than `j` index ${provider.jIndex}';
-        if (provider.leftIndex < provider.iIndex - 1)
+        if (provider.leftIndex! < provider.iIndex - 1)
           text += ', we\'ll sort the left part of pivot';
-        else if (provider.iIndex < provider.rightIndex)
+        else if (provider.iIndex < provider.rightIndex!)
           text += ', we\'ll sort the right part of pivot';
       }
     }

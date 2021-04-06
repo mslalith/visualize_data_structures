@@ -3,9 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/to_remember.dart';
-
-import 'selection_sort_provider.dart';
-import 'selection_sort_settings_view.dart';
+import 'package:visualize_data_structures/features/sort/selection_sort/selection_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/selection_sort/selection_sort_settings_view.dart';
 
 class SelectionSortBottomBar extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class SelectionSortBottomBar extends StatefulWidget {
 }
 
 class _SelectionSortBottomBarState extends State<SelectionSortBottomBar> {
-  SelectionSortProvider provider;
+  late SelectionSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

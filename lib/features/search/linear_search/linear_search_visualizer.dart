@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'linear_search_provider.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_provider.dart';
 
 class LinearSearchVisualizer extends StatefulWidget {
   @override
@@ -11,7 +10,7 @@ class LinearSearchVisualizer extends StatefulWidget {
 }
 
 class _LinearSearchVisualizerState extends State<LinearSearchVisualizer> {
-  LinearSearchProvider provider;
+  late LinearSearchProvider provider;
 
   @override
   Widget build(BuildContext context) {

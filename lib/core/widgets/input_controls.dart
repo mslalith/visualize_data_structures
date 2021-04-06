@@ -6,8 +6,8 @@ class InputControls extends StatefulWidget {
   final Widget child;
 
   const InputControls({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -15,8 +15,8 @@ class InputControls extends StatefulWidget {
 }
 
 class _InputControlsState extends State<InputControls> {
-  FocusNode focusNode;
-  InputControlsProvider provider;
+  late FocusNode focusNode;
+  late InputControlsProvider provider;
 
   @override
   void didChangeDependencies() {

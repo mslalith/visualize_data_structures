@@ -1,4 +1,4 @@
-import 'selection_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/selection_sort/selection_sort_provider.dart';
 
 class SelectionSortHistoryItem {
   final int id;
@@ -8,12 +8,12 @@ class SelectionSortHistoryItem {
   final int min;
   final SelectionSortState state;
 
-  SelectionSortHistoryItem({
-    this.id,
-    this.array,
-    this.i,
-    this.j,
-    this.min,
-    this.state,
+  const SelectionSortHistoryItem({
+    required this.id,
+    required this.array,
+    required this.i,
+    required this.j,
+    required this.min,
+    required this.state,
   });
 }

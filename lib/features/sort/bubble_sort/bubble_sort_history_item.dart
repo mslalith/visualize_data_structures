@@ -7,11 +7,11 @@ class BubbleSortHistoryItem {
   final int j;
   final BubbleSortState state;
 
-  BubbleSortHistoryItem({
-    this.id,
-    this.array,
-    this.i,
-    this.j,
-    this.state,
+  const BubbleSortHistoryItem({
+    required this.id,
+    required this.array,
+    required this.i,
+    required this.j,
+    required this.state,
   });
 }

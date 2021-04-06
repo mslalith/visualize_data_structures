@@ -13,7 +13,7 @@ class BubbleSortDataView extends StatefulWidget {
 }
 
 class _BubbleSortDataViewState extends State<BubbleSortDataView> {
-  BubbleSortProvider provider;
+  late BubbleSortProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -101,14 +101,12 @@ class _BubbleSortDataViewState extends State<BubbleSortDataView> {
       ),
     );
 
-    if (isMobile)
-      child = Expanded(child: child);
+    if (isMobile) child = Expanded(child: child);
 
     // Since RawKeyboardListener is not working properly in release mode.
     // The next and previous buttons are made visible.
     // Once the bug is fixed by the Flutter team, the below line will be removed.
     isMobile = true;
-
 
     return Card(
       color: Colors.transparent,
@@ -161,7 +159,7 @@ class _BubbleSortDataViewState extends State<BubbleSortDataView> {
         SizedBox(width: 16.0),
         Text(
           provider.shouldSwap ? '>' : '<',
-          style: Theme.of(context).textTheme.headline,
+          style: Theme.of(context).textTheme.headline5,
         ),
         SizedBox(width: 16.0),
         Column(

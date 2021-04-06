@@ -1,21 +1,22 @@
 import 'dart:math' show pi;
 
-import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
+import 'package:flutter/material.dart';
 
 class ConfettiProvider extends ChangeNotifier {
-  OverlayEntry _overlayEntry;
-  ConfettiController _controller;
+  late OverlayEntry _overlayEntry;
+  late ConfettiController _controller;
 
   ConfettiController get controller => _controller;
 
   void initialize(BuildContext context, {int duration = 6}) {
     _controller = ConfettiController(duration: Duration(seconds: duration));
     _overlayEntry = _createOverlay();
-    Overlay.of(context).insert(_overlayEntry);
+    Overlay.of(context)!.insert(_overlayEntry);
   }
 
   void playConfetti() => _controller.play();
+
   void stopConfetti() => _controller.stop();
 
   OverlayEntry _createOverlay() {

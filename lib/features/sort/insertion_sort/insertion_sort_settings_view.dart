@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 import 'package:visualize_data_structures/core/widgets/setting_slider_view.dart';
-
-import 'insertion_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_provider.dart';
 
 class InsertionSortSettingsView extends StatefulWidget {
   @override
-  _InsertionSortSettingsViewState createState() => _InsertionSortSettingsViewState();
+  _InsertionSortSettingsViewState createState() =>
+      _InsertionSortSettingsViewState();
 }
 
 class _InsertionSortSettingsViewState extends State<InsertionSortSettingsView> {
-  InsertionSortProvider provider;
+  late InsertionSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

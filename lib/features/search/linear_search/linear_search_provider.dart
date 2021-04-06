@@ -1,6 +1,6 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
 
 class LinearSearchProvider extends ChangeNotifier {
   Set<int> _history = {};
@@ -28,11 +28,11 @@ class LinearSearchProvider extends ChangeNotifier {
 
   double get arraySize => _arraySize;
 
-  int _searchIndex;
+  int? _searchIndex;
 
-  int get searchIndex => _searchIndex;
+  int? get searchIndex => _searchIndex;
 
-  int get searchValue => _array[_searchIndex];
+  int get searchValue => _array[_searchIndex!];
 
   int _iIndex = 0;
 
@@ -42,8 +42,8 @@ class LinearSearchProvider extends ChangeNotifier {
 
   void initialize() {
     _history = {};
-    updateMaxArrayValue(initialMinArrayValue, notify: false);
     generateArray(notify: false);
+    updateMaxArrayValue(initialMinArrayValue, notify: false);
   }
 
   void updateArraySize(double value, {notify = true}) {
@@ -147,7 +147,8 @@ class LinearSearchProvider extends ChangeNotifier {
     if (_history.isNotEmpty) {
       _updateIIndex(_history.last, notify: false);
       _history.remove(_history.last);
-    } else isFirst = true;
+    } else
+      isFirst = true;
   }
 
   void stepForwardAndNotify() {

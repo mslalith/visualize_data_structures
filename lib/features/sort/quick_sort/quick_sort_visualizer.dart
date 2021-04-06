@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'quick_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_provider.dart';
 
 class QuickSortVisualizer extends StatefulWidget {
   @override
@@ -14,9 +13,9 @@ class QuickSortVisualizer extends StatefulWidget {
 
 class _QuickSortVisualizerState extends State<QuickSortVisualizer>
     with SingleTickerProviderStateMixin {
-  QuickSortProvider provider;
+  late QuickSortProvider provider;
   double nodeSize = 30.0;
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {

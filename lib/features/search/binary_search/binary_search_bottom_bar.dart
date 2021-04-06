@@ -3,9 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/to_remember.dart';
-
-import 'binary_search_provider.dart';
-import 'binary_search_settings_view.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_provider.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_settings_view.dart';
 
 class BinarySearchBottomBar extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class BinarySearchBottomBar extends StatefulWidget {
 }
 
 class _BinarySearchBottomBarState extends State<BinarySearchBottomBar> {
-  BinarySearchProvider provider;
+  late BinarySearchProvider provider;
 
   @override
   Widget build(BuildContext context) {

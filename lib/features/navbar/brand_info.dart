@@ -34,16 +34,11 @@ class BrandInfo extends StatelessWidget {
     );
   }
 
-  Widget _fontText(context, text) =>
-      Text(
+  Widget _fontText(context, text) => Text(
         text,
-        style: Theme
-            .of(context)
-            .textTheme
-            .subhead
-            .copyWith(
-          fontFamily: Fonts.gelasio,
-          letterSpacing: 0.8,
-        ),
+        style: Theme.of(context).textTheme.subtitle1!.copyWith(
+              fontFamily: Fonts.gelasio,
+              letterSpacing: 0.8,
+            ),
       );
 }

@@ -4,8 +4,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/to_remember.dart';
 import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_provider.dart';
-
-import 'bubble_sort_settings_view.dart';
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_settings_view.dart';
 
 class BubbleSortBottomBar extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class BubbleSortBottomBar extends StatefulWidget {
 }
 
 class _BubbleSortBottomBarState extends State<BubbleSortBottomBar> {
-  BubbleSortProvider provider;
+  late BubbleSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

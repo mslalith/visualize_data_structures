@@ -11,8 +11,8 @@ class NavListItem extends StatefulWidget {
   final NavItem item;
 
   const NavListItem({
-    Key key,
-    @required this.item,
+    Key? key,
+    required this.item,
   }) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class NavListItem extends StatefulWidget {
 
 class _NavListItemState extends State<NavListItem>
     with SingleTickerProviderStateMixin {
-  AnimationController _openCloseAnimationController;
+  late AnimationController _openCloseAnimationController;
   bool isOpened = false;
 
   @override
@@ -103,8 +103,7 @@ class _NavListItemState extends State<NavListItem>
   }
 
   void _onTopicSelected(String title, String topic, bool isDesktop) {
-    if (!isDesktop)
-      Navigator.of(context).pop();
+    if (!isDesktop) Navigator.of(context).pop();
     String name =
         title.toLowerCase() + '_' + topic.toLowerCase().replaceAll(' ', '_');
     Provider.of<TopicProvider>(context, listen: false).updateTopic(name);
@@ -126,9 +125,9 @@ class _SubTopicItem extends StatelessWidget {
   final VoidCallback onPressed;
 
   const _SubTopicItem({
-    Key key,
-    @required this.topic,
-    @required this.onPressed,
+    Key? key,
+    required this.topic,
+    required this.onPressed,
   }) : super(key: key);
 
   @override

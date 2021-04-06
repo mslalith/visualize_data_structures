@@ -12,11 +12,10 @@ import 'package:visualize_data_structures/core/utils/app_utils.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/header_bar.dart';
 import 'package:visualize_data_structures/core/widgets/settings_fab.dart';
-
-import 'bubble_sort_bottom_bar.dart';
-import 'bubble_sort_data_view.dart';
-import 'bubble_sort_provider.dart';
-import 'bubble_sort_visualizer.dart';
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_bottom_bar.dart';
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_data_view.dart';
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_visualizer.dart';
 
 class BubbleSort extends StatefulWidget {
   static const String KEY = 'sort_bubble_sort';
@@ -26,8 +25,8 @@ class BubbleSort extends StatefulWidget {
 }
 
 class _BubbleSortState extends State<BubbleSort> {
-  BubbleSortProvider provider;
-  ConfettiController confettiController;
+  late BubbleSortProvider provider;
+  late ConfettiController confettiController;
 
   @override
   void initState() {
@@ -47,7 +46,7 @@ class _BubbleSortState extends State<BubbleSort> {
     provider = Provider.of<BubbleSortProvider>(context);
     InputControlsProvider inputControlsProvider =
         Provider.of<InputControlsProvider>(context);
-    RawKeyEvent keyEvent = inputControlsProvider.keyEvent;
+    RawKeyEvent? keyEvent = inputControlsProvider.keyEvent;
     if (keyEvent != null && inputControlsProvider.isCurrentKeyUp) {
       LogicalKeyboardKey key = keyEvent.data.logicalKey;
       if (key == LogicalKeyboardKey.space ||
@@ -65,14 +64,14 @@ class _BubbleSortState extends State<BubbleSort> {
           () async {
             Provider.of<ConfettiProvider>(context, listen: false)
                 .playConfetti();
-            bool retry = await AppUtils.showCompletionDialog(
+            final bool? retry = await AppUtils.showCompletionDialog(
               context,
               [
                 'The array is sorted.',
                 'If you didn\'t understood, you can always try again.',
               ],
             );
-            if (retry) provider.generateArray();
+            if (retry != null && retry) provider.generateArray();
           },
         );
       }
@@ -94,8 +93,8 @@ class _BubbleSortMobile extends StatefulWidget {
   final ConfettiController confettiController;
 
   _BubbleSortMobile({
-    Key key,
-    this.confettiController,
+    Key? key,
+    required this.confettiController,
   }) : super(key: key);
 
   @override
@@ -103,7 +102,7 @@ class _BubbleSortMobile extends StatefulWidget {
 }
 
 class _BubbleSortMobileState extends State<_BubbleSortMobile> {
-  BubbleSortProvider provider;
+  late BubbleSortProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -166,8 +165,8 @@ class _BubbleSortMobileState extends State<_BubbleSortMobile> {
 
 class _BubbleSortSettingsFab extends StatelessWidget {
   const _BubbleSortSettingsFab({
-    Key key,
-    @required this.provider,
+    Key? key,
+    required this.provider,
   }) : super(key: key);
 
   final BubbleSortProvider provider;
@@ -249,8 +248,8 @@ class _BubbleSort extends StatelessWidget {
   final ConfettiController confettiController;
 
   const _BubbleSort({
-    Key key,
-    this.confettiController,
+    Key? key,
+    required this.confettiController,
   }) : super(key: key);
 
   @override

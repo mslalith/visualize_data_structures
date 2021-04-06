@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'expanded_widget.dart';
+import 'package:visualize_data_structures/core/widgets/expanded_widget.dart';
 
 class ComplexityWidget extends StatelessWidget {
   final String worstTime;
@@ -10,11 +9,11 @@ class ComplexityWidget extends StatelessWidget {
   final bool shouldExpand;
 
   const ComplexityWidget({
-    Key key,
-    this.worstTime,
-    this.averageTime,
-    this.bestTime,
-    this.space,
+    Key? key,
+    required this.worstTime,
+    required this.averageTime,
+    required this.bestTime,
+    required this.space,
     this.shouldExpand = true,
   }) : super(key: key);
 
@@ -26,7 +25,7 @@ class ComplexityWidget extends StatelessWidget {
       shouldExpand: shouldExpand,
       title: Text(
         'Complexity',
-        style: Theme.of(context).textTheme.subhead,
+        style: Theme.of(context).textTheme.subtitle1,
       ),
       children: [
         'Worst (t)\t=\t$worstTime',

@@ -1,23 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/utils/app_utils.dart';
+import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 
 class InfoDialog extends StatelessWidget {
   final BorderRadius borderRadius;
   final EdgeInsets padding;
   final List<Widget> children;
   final List<Widget> actions;
-  final String titleText;
+  final String? titleText;
 
   InfoDialog({
-    Key key,
+    Key? key,
     borderRadius,
     padding,
     this.titleText,
     this.actions = const [],
-    @required this.children,
-  })  : borderRadius = BorderRadius.circular(12.0),
+    required this.children,
+  })   : borderRadius = BorderRadius.circular(12.0),
         padding = const EdgeInsets.symmetric(
           horizontal: 16.0,
           vertical: 24.0,
@@ -37,8 +37,8 @@ class InfoDialog extends StatelessWidget {
             padding: EdgeInsets.only(top: padding.top),
             child: Center(
               child: Text(
-                titleText,
-                style: Theme.of(context).textTheme.title.copyWith(
+                titleText!,
+                style: Theme.of(context).textTheme.headline6!.copyWith(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,11 +56,10 @@ class InfoDialog extends StatelessWidget {
         if (actions.isEmpty)
           Container(
             width: double.infinity,
-            child: FlatButton(
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              color: skyBlue,
-              textColor: Colors.white,
-              child: Text('OK'),
+            child: FluentButton(
+              text: 'OK',
+              backgroundColor: Colors.transparent,
+              textColor: Colors.black,
               onPressed: () {
                 AppUtils.isAnyDialogShowing = false;
                 Navigator.pop(context);

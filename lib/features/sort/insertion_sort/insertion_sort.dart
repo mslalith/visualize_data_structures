@@ -9,11 +9,10 @@ import 'package:visualize_data_structures/core/utils/app_utils.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/header_bar.dart';
 import 'package:visualize_data_structures/core/widgets/settings_fab.dart';
-
-import 'insertion_sort_bottom_bar.dart';
-import 'insertion_sort_data_view.dart';
-import 'insertion_sort_provider.dart';
-import 'insertion_sort_visualizer.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_bottom_bar.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_data_view.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_visualizer.dart';
 
 class InsertionSort extends StatefulWidget {
   static const String KEY = 'sort_insertion_sort';
@@ -23,7 +22,7 @@ class InsertionSort extends StatefulWidget {
 }
 
 class _InsertionSortState extends State<InsertionSort> {
-  InsertionSortProvider provider;
+  late InsertionSortProvider provider;
 
   @override
   void initState() {
@@ -36,7 +35,7 @@ class _InsertionSortState extends State<InsertionSort> {
     provider = Provider.of<InsertionSortProvider>(context);
     InputControlsProvider inputControlsProvider =
         Provider.of<InputControlsProvider>(context);
-    RawKeyEvent keyEvent = inputControlsProvider.keyEvent;
+    RawKeyEvent? keyEvent = inputControlsProvider.keyEvent;
     if (keyEvent != null && inputControlsProvider.isCurrentKeyUp) {
       LogicalKeyboardKey key = keyEvent.data.logicalKey;
       if (key == LogicalKeyboardKey.space ||
@@ -51,17 +50,17 @@ class _InsertionSortState extends State<InsertionSort> {
         AppUtils.isAnyDialogShowing = true;
         Future.delayed(
           Duration.zero,
-              () async {
+          () async {
             Provider.of<ConfettiProvider>(context, listen: false)
                 .playConfetti();
-            bool retry = await AppUtils.showCompletionDialog(
+            final bool? retry = await AppUtils.showCompletionDialog(
               context,
               [
                 'The array is sorted.',
                 'If you didn\'t understood, you can always try again.',
               ],
             );
-            if (retry) provider.generateArray();
+            if (retry != null && retry) provider.generateArray();
           },
         );
       }
@@ -85,7 +84,7 @@ class _InsertionSortMobile extends StatefulWidget {
 }
 
 class _InsertionSortMobileState extends State<_InsertionSortMobile> {
-  InsertionSortProvider provider;
+  late InsertionSortProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +134,8 @@ class _InsertionSortMobileState extends State<_InsertionSortMobile> {
 
 class _InsertionSortSettingsFab extends StatelessWidget {
   const _InsertionSortSettingsFab({
-    Key key,
-    @required this.provider,
+    Key? key,
+    required this.provider,
   }) : super(key: key);
 
   final InsertionSortProvider provider;

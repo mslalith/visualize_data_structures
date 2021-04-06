@@ -1,4 +1,4 @@
-import 'binary_search_provider.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_provider.dart';
 
 class BinarySearchHistoryItem {
   final int id;
@@ -7,11 +7,11 @@ class BinarySearchHistoryItem {
   final int high;
   final BinarySearchState state;
 
-  BinarySearchHistoryItem({
-    this.id,
-    this.low,
-    this.mid,
-    this.high,
-    this.state,
+  const BinarySearchHistoryItem({
+    required this.id,
+    required this.low,
+    required this.mid,
+    required this.high,
+    required this.state,
   });
 }

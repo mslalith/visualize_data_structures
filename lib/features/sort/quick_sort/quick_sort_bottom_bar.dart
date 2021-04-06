@@ -4,8 +4,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/to_remember.dart';
 import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_provider.dart';
-
-import 'quick_sort_settings_view.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_settings_view.dart';
 
 class QuickSortBottomBar extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class QuickSortBottomBar extends StatefulWidget {
 }
 
 class _QuickSortBottomBarState extends State<QuickSortBottomBar> {
-  QuickSortProvider provider;
+  late QuickSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

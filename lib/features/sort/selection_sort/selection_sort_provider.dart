@@ -1,8 +1,7 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
-
-import 'selection_sort_history_item.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
+import 'package:visualize_data_structures/features/sort/selection_sort/selection_sort_history_item.dart';
 
 class SelectionSortProvider extends ChangeNotifier {
   Set<SelectionSortHistoryItem> _history = {};
@@ -132,7 +131,7 @@ class SelectionSortProvider extends ChangeNotifier {
     _updateIIndex(0, notify: notify);
     _updateJIndex(1, notify: notify);
     _updateMinIndex(_iIndex, notify: notify);
-	isSwapping = false;
+    isSwapping = false;
   }
 
   bool get isJMin => jThValue < minThValue;
@@ -140,7 +139,7 @@ class SelectionSortProvider extends ChangeNotifier {
   bool get isJLast => _jIndex == _arraySize - 1;
 
   List<int> _swap(a, i, j) {
-    int temp = a[i];
+    final int temp = a[i];
     a[i] = a[j];
     a[j] = temp;
     return a;
@@ -180,7 +179,8 @@ class SelectionSortProvider extends ChangeNotifier {
             _oldArray = List<int>.from(_array);
             _updateArray(_swap(_array, _iIndex, _jIndex), notify: false);
             _state = SelectionSortState.swap;
-          } else isCompleted = true;
+          } else
+            isCompleted = true;
         }
       }
 //      notifyListeners();
@@ -220,6 +220,7 @@ class SelectionSortProvider extends ChangeNotifier {
   }
 
   bool get canGoBack => _history.isNotEmpty;
+
   bool get canGoForward => !isCompleted;
 }
 

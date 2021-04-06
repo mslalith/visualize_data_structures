@@ -5,8 +5,7 @@ import 'package:visualize_data_structures/core/fonts/fonts.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'selection_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/selection_sort/selection_sort_provider.dart';
 
 class SelectionSortDataView extends StatefulWidget {
   @override
@@ -14,7 +13,7 @@ class SelectionSortDataView extends StatefulWidget {
 }
 
 class _SelectionSortDataViewState extends State<SelectionSortDataView> {
-  SelectionSortProvider provider;
+  late SelectionSortProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -103,14 +102,12 @@ class _SelectionSortDataViewState extends State<SelectionSortDataView> {
       ),
     );
 
-    if (isMobile)
-      child = Expanded(child: child);
+    if (isMobile) child = Expanded(child: child);
 
     // Since RawKeyboardListener is not working properly in release mode.
     // The next and previous buttons are made visible.
     // Once the bug is fixed by the Flutter team, the below line will be removed.
     isMobile = true;
-
 
     return Card(
       color: Colors.transparent,
@@ -163,7 +160,7 @@ class _SelectionSortDataViewState extends State<SelectionSortDataView> {
         SizedBox(width: 16.0),
         Text(
           provider.isJMin ? '>' : '<',
-          style: Theme.of(context).textTheme.headline,
+          style: Theme.of(context).textTheme.headline5,
         ),
         SizedBox(width: 16.0),
         Column(

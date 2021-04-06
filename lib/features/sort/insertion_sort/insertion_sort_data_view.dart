@@ -5,8 +5,7 @@ import 'package:visualize_data_structures/core/fonts/fonts.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'insertion_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_provider.dart';
 
 class InsertionSortDataView extends StatefulWidget {
   @override
@@ -14,7 +13,7 @@ class InsertionSortDataView extends StatefulWidget {
 }
 
 class _InsertionSortDataViewState extends State<InsertionSortDataView> {
-  InsertionSortProvider provider;
+  late InsertionSortProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -102,14 +101,12 @@ class _InsertionSortDataViewState extends State<InsertionSortDataView> {
       ),
     );
 
-    if (isMobile)
-      child = Expanded(child: child);
+    if (isMobile) child = Expanded(child: child);
 
     // Since RawKeyboardListener is not working properly in release mode.
     // The next and previous buttons are made visible.
     // Once the bug is fixed by the Flutter team, the below line will be removed.
     isMobile = true;
-
 
     return Card(
       color: Colors.transparent,
@@ -162,7 +159,7 @@ class _InsertionSortDataViewState extends State<InsertionSortDataView> {
         SizedBox(width: 16.0),
         Text(
           provider.isJMin ? '<' : '>',
-          style: Theme.of(context).textTheme.headline,
+          style: Theme.of(context).textTheme.headline5,
         ),
         SizedBox(width: 16.0),
         SizedBox(width: 16.0),
@@ -193,7 +190,9 @@ class _InsertionSortDataViewState extends State<InsertionSortDataView> {
           : 'as the `j` value is greater than `key`, we will make ${provider.key} as `key` and sort to it\'s place';
     }
 
-    if (provider.isLiftKeyState || provider.isFindMinPlaceState || provider.isSwapKeyState) {
+    if (provider.isLiftKeyState ||
+        provider.isFindMinPlaceState ||
+        provider.isSwapKeyState) {
       if (provider.isJMin) {
         text =
             'we found the right place for ${provider.key}. We\'ll place `key` at index ${provider.emptyIndex} i.e; `j + 1`';

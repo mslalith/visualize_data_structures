@@ -9,9 +9,9 @@ class ClickableIcon extends StatelessWidget {
   final bool isVisible;
 
   const ClickableIcon({
-    Key key,
-    @required this.icon,
-    @required this.onPressed,
+    Key? key,
+    required this.icon,
+    required this.onPressed,
     this.iconSize = 19.0,
     this.iconColor = Colors.white,
     this.backgroundColor = Colors.transparent,
@@ -20,23 +20,22 @@ class ClickableIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      elevation: 0.0,
-      type: MaterialType.button,
-      shape: CircleBorder(),
-      child: InkWell(
-        onTap: onPressed,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          width: isVisible ? 40.0 : 0.0,
-          height: isVisible ? 40.0 : 0.0,
-          padding: const EdgeInsets.all(8.0),
-          color: backgroundColor,
-          child: Icon(
-            icon,
-            size: iconSize,
-            color: iconColor,
+    return ClipOval(
+      child: Material(
+        color: backgroundColor,
+        elevation: 0.0,
+        child: InkWell(
+          onTap: onPressed,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            width: isVisible ? 40.0 : 0.0,
+            height: isVisible ? 40.0 : 0.0,
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              icon,
+              size: iconSize,
+              color: iconColor,
+            ),
           ),
         ),
       ),

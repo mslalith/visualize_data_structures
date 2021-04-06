@@ -1,8 +1,7 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
-
-import 'bubble_sort_history_item.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_history_item.dart';
 
 class BubbleSortProvider extends ChangeNotifier {
   Set<BubbleSortHistoryItem> _history = {};
@@ -134,7 +133,7 @@ class BubbleSortProvider extends ChangeNotifier {
   bool get shouldSwap => jThValue > nextJThValue;
 
   List<int> _swap(a, i, j) {
-    int temp = a[i];
+    final int temp = a[i];
     a[i] = a[j];
     a[j] = temp;
     return a;
@@ -217,6 +216,7 @@ class BubbleSortProvider extends ChangeNotifier {
   }
 
   bool get canGoBack => _history.isNotEmpty;
+
   bool get canGoForward => !isCompleted;
 }
 

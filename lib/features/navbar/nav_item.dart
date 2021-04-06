@@ -3,7 +3,7 @@ class NavItem {
   final List<String> topics;
 
   const NavItem({
-    this.name,
-    this.topics,
+    required this.name,
+    required this.topics,
   });
 }

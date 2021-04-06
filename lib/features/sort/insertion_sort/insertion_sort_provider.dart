@@ -1,16 +1,16 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
-import 'insertion_sort_history_item.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_history_item.dart';
 
 class InsertionSortProvider extends ChangeNotifier {
   Set<InsertionSortHistoryItem> _history = {};
   bool isSwapping = false;
   bool isCompleted = false;
 
-  InsertionSortState _state;
+  InsertionSortState? _state;
 
-  InsertionSortState get state => _state;
+  InsertionSortState? get state => _state;
 
   List<int> _array = [];
 
@@ -146,7 +146,7 @@ class InsertionSortProvider extends ChangeNotifier {
   bool get isNextState => _state == InsertionSortState.next;
 
   List<int> _swap(a, i, j) {
-    int temp = a[i];
+    final int temp = a[i];
     a[i] = a[j];
     a[j] = temp;
     return a;
@@ -243,6 +243,7 @@ class InsertionSortProvider extends ChangeNotifier {
   }
 
   bool get canGoBack => _history.isNotEmpty;
+
   bool get canGoForward => !isCompleted;
 }
 

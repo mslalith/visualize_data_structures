@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'insertion_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_provider.dart';
 
 class InsertionSortVisualizer extends StatefulWidget {
   @override
@@ -13,9 +12,9 @@ class InsertionSortVisualizer extends StatefulWidget {
 
 class _InsertionSortVisualizerState extends State<InsertionSortVisualizer>
     with TickerProviderStateMixin {
-  InsertionSortProvider provider;
+  late InsertionSortProvider provider;
   double nodeSize = 30.0;
-  AnimationController keyAnimationController;
+  late AnimationController keyAnimationController;
 
   @override
   void initState() {

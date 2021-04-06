@@ -7,18 +7,18 @@ description: Understand Data Structures with pictorial representations and anima
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
-  responsive_builder: ^0.1.4
-  provider: ^4.0.2
-  after_layout: ^1.0.7+2
-  font_awesome_flutter: ^8.5.0
-  confetti: ^0.3.0
-  shared_preferences: ^0.5.6
+  responsive_builder: ^0.4.1
+  provider: ^5.0.0
+  after_layout: ^1.1.0
+  font_awesome_flutter: ^9.0.0
+  confetti: ^0.6.0-nullsafety
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:

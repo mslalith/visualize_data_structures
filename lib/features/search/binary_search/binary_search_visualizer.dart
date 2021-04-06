@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'binary_search_provider.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_provider.dart';
 
 class BinarySearchVisualizer extends StatefulWidget {
   @override
@@ -11,7 +10,7 @@ class BinarySearchVisualizer extends StatefulWidget {
 }
 
 class _BinarySearchVisualizerState extends State<BinarySearchVisualizer> {
-  BinarySearchProvider provider;
+  late BinarySearchProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +18,7 @@ class _BinarySearchVisualizerState extends State<BinarySearchVisualizer> {
     return Center(
       child: Selector<BinarySearchProvider, List<int>>(
         selector: (_, provider) => provider.array,
-        builder: (_, list, __) =>
-            _buildArrayNodes(list),
+        builder: (_, list, __) => _buildArrayNodes(list),
       ),
     );
   }
@@ -54,26 +52,21 @@ class _BinarySearchVisualizerState extends State<BinarySearchVisualizer> {
   }
 
   String _getLowHighMidText(index) {
-    if (provider.low == index && provider.mid == index && provider.high == index)
-      return 'lmh';
+    if (provider.low == index &&
+        provider.mid == index &&
+        provider.high == index) return 'lmh';
 
-    if (provider.low == index && provider.high == index)
-      return 'l h';
+    if (provider.low == index && provider.high == index) return 'l h';
 
-    if (provider.low == index && provider.mid == index)
-      return 'l m';
+    if (provider.low == index && provider.mid == index) return 'l m';
 
-    if (provider.mid == index && provider.high == index)
-      return 'm h';
+    if (provider.mid == index && provider.high == index) return 'm h';
 
-    if (provider.mid == index)
-      return 'm';
+    if (provider.mid == index) return 'm';
 
-    if (provider.low == index)
-      return 'l';
+    if (provider.low == index) return 'l';
 
-    if (provider.high == index)
-      return 'h';
+    if (provider.high == index) return 'h';
 
     return '';
   }

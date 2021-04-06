@@ -10,18 +10,18 @@ class ExpandedWidget<T> extends StatefulWidget {
   final List<T> children;
   final Widget Function(T) builder;
   final bool animatedBackgroundColor;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final Color dividerColor;
   final Color iconColor;
   final bool shouldExpand;
 
   ExpandedWidget({
-    Key key,
-    @required openWidth,
+    Key? key,
+    required openWidth,
     closeWidth,
-    @required this.title,
-    @required this.children,
-    @required this.builder,
+    required this.title,
+    required this.children,
+    required this.builder,
     this.animatedBackgroundColor = false,
     this.backgroundColor,
     dividerColor,
@@ -38,7 +38,7 @@ class ExpandedWidget<T> extends StatefulWidget {
 
 class _ExpandedWidgetState<T> extends State<ExpandedWidget<T>>
     with SingleTickerProviderStateMixin {
-  AnimationController _openCloseAnimationController;
+  late AnimationController _openCloseAnimationController;
   bool isOpened = false;
 
   @override

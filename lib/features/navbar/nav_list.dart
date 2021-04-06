@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'nav_item.dart';
-import 'nav_list_item.dart';
+import 'package:visualize_data_structures/features/navbar/nav_item.dart';
+import 'package:visualize_data_structures/features/navbar/nav_list_item.dart';
 
 class NavList extends StatefulWidget {
   @override

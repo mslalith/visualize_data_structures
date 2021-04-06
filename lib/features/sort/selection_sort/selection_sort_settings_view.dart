@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 import 'package:visualize_data_structures/core/widgets/setting_slider_view.dart';
-
-import 'selection_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/selection_sort/selection_sort_provider.dart';
 
 class SelectionSortSettingsView extends StatefulWidget {
   @override
-  _SelectionSortSettingsViewState createState() => _SelectionSortSettingsViewState();
+  _SelectionSortSettingsViewState createState() =>
+      _SelectionSortSettingsViewState();
 }
 
 class _SelectionSortSettingsViewState extends State<SelectionSortSettingsView> {
-  SelectionSortProvider provider;
+  late SelectionSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

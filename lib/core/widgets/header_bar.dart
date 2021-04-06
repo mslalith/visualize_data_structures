@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visualize_data_structures/core/fonts/fonts.dart';
-
-import 'clickable_icon.dart';
+import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
 
 class HeaderBar extends StatelessWidget {
   final String title;
 
   const HeaderBar({
-    Key key,
-    @required this.title,
+    Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -29,7 +28,7 @@ class HeaderBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Text(
                 title,
-                style: Theme.of(context).textTheme.headline.copyWith(
+                style: Theme.of(context).textTheme.headline5!.copyWith(
                       fontFamily: Fonts.gelasio,
                     ),
               ),

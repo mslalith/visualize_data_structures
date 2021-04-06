@@ -1,7 +1,7 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
-import 'binary_search_history_item.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_history_item.dart';
 
 class BinarySearchProvider extends ChangeNotifier {
   Set<BinarySearchHistoryItem> _history = {};
@@ -27,11 +27,11 @@ class BinarySearchProvider extends ChangeNotifier {
 
   double get arraySize => _arraySize;
 
-  int _searchIndex;
+  int? _searchIndex;
 
-  int get searchIndex => _searchIndex;
+  int? get searchIndex => _searchIndex;
 
-  int get searchValue => _array[_searchIndex];
+  int get searchValue => _array[_searchIndex!];
 
   int get currentValue => _mid != -1 ? _array[_mid] : -1;
 
@@ -51,9 +51,9 @@ class BinarySearchProvider extends ChangeNotifier {
 
   BinarySearchState get state => _state;
 
-  bool get isLeftInterval => _searchIndex < _mid;
+  bool get isLeftInterval => _searchIndex! < _mid;
 
-  bool get isRightInterval => _searchIndex > _mid;
+  bool get isRightInterval => _searchIndex! > _mid;
 
   void initialize() {
     _history = {};
@@ -185,7 +185,8 @@ class BinarySearchProvider extends ChangeNotifier {
       _state = item.state;
       _history.remove(item);
 //      notifyListeners();
-    } else isFirst = true;
+    } else
+      isFirst = true;
   }
 
   void stepForwardAndNotify() {
@@ -199,6 +200,7 @@ class BinarySearchProvider extends ChangeNotifier {
   }
 
   bool get canGoBack => _history.isNotEmpty;
+
   bool get canGoForward => !isCompleted;
 }
 

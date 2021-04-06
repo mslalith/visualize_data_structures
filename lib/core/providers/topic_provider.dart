@@ -13,9 +13,9 @@ class TopicProvider extends ChangeNotifier {
 
   String get currentTopic => _currentTopic;
 
-  Widget _currentWidget;
+  Widget? _currentWidget;
 
-  Widget get currentWidget => _currentWidget;
+  Widget? get currentWidget => _currentWidget;
 
   void initialize() {
     _currentTopic = INITIAL_TOPIC;

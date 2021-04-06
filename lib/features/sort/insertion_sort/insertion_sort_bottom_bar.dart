@@ -3,9 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/to_remember.dart';
-
-import 'insertion_sort_settings_view.dart';
-import 'insertion_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/insertion_sort/insertion_sort_settings_view.dart';
 
 class InsertionSortBottomBar extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class InsertionSortBottomBar extends StatefulWidget {
 }
 
 class _InsertionSortBottomBarState extends State<InsertionSortBottomBar> {
-  InsertionSortProvider provider;
+  late InsertionSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

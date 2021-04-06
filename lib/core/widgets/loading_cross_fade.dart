@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'cross_fade.dart';
+import 'package:visualize_data_structures/core/widgets/cross_fade.dart';
 
 class LoadingCrossFade extends StatefulWidget {
   final Widget child;
@@ -9,9 +8,9 @@ class LoadingCrossFade extends StatefulWidget {
   final bool centerProgressBar;
 
   const LoadingCrossFade({
-    Key key,
-    @required this.isLoaded,
-    @required this.child,
+    Key? key,
+    required this.isLoaded,
+    required this.child,
     this.centerProgressBar = true,
     this.duration = const Duration(milliseconds: 300),
   }) : super(key: key);
@@ -24,8 +23,7 @@ class _LoadingCrossFadeState extends State<LoadingCrossFade> {
   @override
   Widget build(BuildContext context) {
     Widget loadingWidget = CircularProgressIndicator();
-    if (widget.centerProgressBar)
-        loadingWidget = Center(child: loadingWidget);
+    if (widget.centerProgressBar) loadingWidget = Center(child: loadingWidget);
 
     return CrossFade<bool>(
       duration: widget.duration,

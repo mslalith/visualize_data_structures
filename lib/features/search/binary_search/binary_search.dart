@@ -9,11 +9,10 @@ import 'package:visualize_data_structures/core/utils/app_utils.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/header_bar.dart';
 import 'package:visualize_data_structures/core/widgets/settings_fab.dart';
-
-import 'binary_search_bottom_bar.dart';
-import 'binary_search_data_view.dart';
-import 'binary_search_provider.dart';
-import 'binary_search_visualizer.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_bottom_bar.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_data_view.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_provider.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_visualizer.dart';
 
 class BinarySearch extends StatefulWidget {
   static const String KEY = 'search_binary_search';
@@ -23,7 +22,7 @@ class BinarySearch extends StatefulWidget {
 }
 
 class _BinarySearchState extends State<BinarySearch> {
-  BinarySearchProvider provider;
+  late BinarySearchProvider provider;
 
   @override
   void initState() {
@@ -36,7 +35,7 @@ class _BinarySearchState extends State<BinarySearch> {
     provider = Provider.of<BinarySearchProvider>(context);
     InputControlsProvider inputControlsProvider =
         Provider.of<InputControlsProvider>(context);
-    RawKeyEvent keyEvent = inputControlsProvider.keyEvent;
+    RawKeyEvent? keyEvent = inputControlsProvider.keyEvent;
     if (keyEvent != null &&
         keyEvent.runtimeType.toString() == InputControlsProvider.KEY_EVENT_UP) {
       LogicalKeyboardKey key = keyEvent.data.logicalKey;
@@ -55,14 +54,14 @@ class _BinarySearchState extends State<BinarySearch> {
           () async {
             Provider.of<ConfettiProvider>(context, listen: false)
                 .playConfetti();
-            bool retry = await AppUtils.showCompletionDialog(
+            final bool? retry = await AppUtils.showCompletionDialog(
               context,
               [
                 'You found the element at index ${provider.mid}.',
                 'If you didn\'t understood, you can always try again.',
               ],
             );
-            if (retry) provider.generateArray();
+            if (retry != null && retry) provider.generateArray();
           },
         );
       }
@@ -86,7 +85,7 @@ class _BinarySearchMobile extends StatefulWidget {
 }
 
 class __BinarySearchMobileState extends State<_BinarySearchMobile> {
-  BinarySearchProvider provider;
+  late BinarySearchProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +135,8 @@ class __BinarySearchMobileState extends State<_BinarySearchMobile> {
 
 class _BinarySearchSettingsFab extends StatelessWidget {
   const _BinarySearchSettingsFab({
-    Key key,
-    @required this.provider,
+    Key? key,
+    required this.provider,
   }) : super(key: key);
 
   final BinarySearchProvider provider;

@@ -6,10 +6,10 @@ import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 import 'package:visualize_data_structures/core/widgets/info_dialog.dart';
 
 class AppUtils {
-  static DeviceScreenType screenType;
-  static bool isMobile = screenType == DeviceScreenType.Mobile;
-  static bool isTablet = screenType == DeviceScreenType.Tablet;
-  static bool isDesktop = screenType == DeviceScreenType.Desktop;
+  static DeviceScreenType? screenType;
+  static bool isMobile = screenType == DeviceScreenType.mobile;
+  static bool isTablet = screenType == DeviceScreenType.tablet;
+  static bool isDesktop = screenType == DeviceScreenType.desktop;
 
   static bool isAnyDialogShowing = false;
 
@@ -50,7 +50,7 @@ class AppUtils {
     );
   }
 
-  static Future<bool> showCompletionDialog(
+  static Future<bool?> showCompletionDialog(
       BuildContext context, List<String> texts) {
     return showDialog<bool>(
       context: context,
@@ -76,17 +76,20 @@ class AppUtils {
               onPressed: () {
                 isAnyDialogShowing = false;
                 Navigator.pop(context, true);
-                Provider.of<ConfettiProvider>(context, listen: false).stopConfetti();
+                Provider.of<ConfettiProvider>(context, listen: false)
+                    .stopConfetti();
               },
             ),
             SizedBox(width: 8.0),
-            FlatButton(
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              child: Text('Done'),
+            FluentButton(
+              text: 'Done',
+              backgroundColor: Colors.transparent,
+              textColor: Colors.black,
               onPressed: () {
                 isAnyDialogShowing = false;
                 Navigator.pop(context, false);
-                Provider.of<ConfettiProvider>(context, listen: false).stopConfetti();
+                Provider.of<ConfettiProvider>(context, listen: false)
+                    .stopConfetti();
               },
             ),
           ],

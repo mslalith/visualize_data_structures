@@ -5,12 +5,12 @@ class CrossFade<T> extends StatefulWidget {
   final T data;
   final Duration duration;
   final Widget Function(T data) builder;
-  final VoidCallback onFadeComplete;
+  final VoidCallback? onFadeComplete;
 
   CrossFade({
-    @required this.initialData,
-    @required this.data,
-    @required this.builder,
+    required this.initialData,
+    required this.data,
+    required this.builder,
     this.duration = const Duration(milliseconds: 300),
     this.onFadeComplete,
   });
@@ -21,9 +21,9 @@ class CrossFade<T> extends StatefulWidget {
 
 class _CrossFadeState<T> extends State<CrossFade<T>>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> animation;
-  T dataToShow;
+  late AnimationController controller;
+  late Animation<double> animation;
+  late T dataToShow;
 
   @override
   void initState() {
@@ -36,10 +36,9 @@ class _CrossFadeState<T> extends State<CrossFade<T>>
           dataToShow = widget.data;
           controller.reverse(from: 1.0);
         } else if (status == AnimationStatus.dismissed) {
-          if (widget.onFadeComplete != null) widget.onFadeComplete();
+          widget.onFadeComplete?.call();
         }
       });
-
 
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -58,7 +57,7 @@ class _CrossFadeState<T> extends State<CrossFade<T>>
   }
 
   @override
-  void didUpdateWidget(CrossFade oldWidget) {
+  void didUpdateWidget(CrossFade<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     dataToShow = oldWidget.data;
     if (!_isTransitioning) {

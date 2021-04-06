@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 import 'package:visualize_data_structures/core/widgets/setting_slider_view.dart';
-
-import 'quick_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_provider.dart';
 
 class QuickSortSettingsView extends StatefulWidget {
   @override
@@ -11,7 +10,7 @@ class QuickSortSettingsView extends StatefulWidget {
 }
 
 class _QuickSortSettingsViewState extends State<QuickSortSettingsView> {
-  QuickSortProvider provider;
+  late QuickSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

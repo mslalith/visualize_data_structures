@@ -1,7 +1,7 @@
 import 'dart:math' show Random;
 import 'dart:collection' show Queue;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
 import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_history_item.dart';
 
 class QuickSortProvider extends ChangeNotifier {
@@ -9,9 +9,9 @@ class QuickSortProvider extends ChangeNotifier {
   bool isSwapping = false;
   bool isCompleted = false;
 
-  QuickSortState _state;
+  QuickSortState? _state;
 
-  QuickSortState get state => _state;
+  QuickSortState? get state => _state;
 
   List<int> _array = [];
 
@@ -38,31 +38,31 @@ class QuickSortProvider extends ChangeNotifier {
 
   int get iThValue => _array[_iIndex];
 
-  int _jIndex;
+  int? _jIndex;
 
-  int get jIndex => _jIndex;
+  int? get jIndex => _jIndex;
 
-  int get jThValue => _array[_jIndex];
+  int get jThValue => _array[_jIndex!];
 
-  int _leftIndex;
+  int? _leftIndex;
 
-  int get leftIndex => _leftIndex;
+  int? get leftIndex => _leftIndex;
 
-  int get leftThValue => _array[_leftIndex];
+  int get leftThValue => _array[_leftIndex!];
 
-  int _rightIndex;
+  int? _rightIndex;
 
-  int get rightIndex => _rightIndex;
+  int? get rightIndex => _rightIndex;
 
-  int get rightThValue => _array[_rightIndex];
+  int get rightThValue => _array[_rightIndex!];
 
-  int _pivotIndex;
+  int? _pivotIndex;
 
-  int get pivotIndex => _pivotIndex;
+  int? get pivotIndex => _pivotIndex;
 
-  int pivotValue;
+  late int pivotValue;
 
-  Queue<int> queue;
+  late Queue<int> queue;
 
   void initialize() {
     _history = {};
@@ -123,19 +123,19 @@ class QuickSortProvider extends ChangeNotifier {
     _state = QuickSortState.none;
     _leftIndex = 0;
     _rightIndex = _array.length - 1;
-    _iIndex = _leftIndex;
+    _iIndex = _leftIndex!;
     _jIndex = _rightIndex;
     _pivotIndex = -1;
     pivotValue = 0;
 
     queue = Queue();
-    queue.addLast(_leftIndex);
-    queue.addLast(_rightIndex);
+    queue.addLast(_leftIndex!);
+    queue.addLast(_rightIndex!);
     isSwapping = false;
     isCompleted = false;
   }
 
-  bool get shouldSwap => _iIndex <= _jIndex;
+  bool get shouldSwap => _iIndex <= _jIndex!;
 
   bool get isNoneState => _state == QuickSortState.none;
 
@@ -152,7 +152,7 @@ class QuickSortProvider extends ChangeNotifier {
   bool get isSwapState => _state == QuickSortState.swap;
 
   List<int> _swap(a, i, j) {
-    int temp = a[i];
+    final int temp = a[i];
     a[i] = a[j];
     a[j] = temp;
     return a;
@@ -168,11 +168,11 @@ class QuickSortProvider extends ChangeNotifier {
             oldArray: List<int>.from(_oldArray),
             array: List<int>.from(_array),
             state: _state,
-            left: _leftIndex,
-            right: _rightIndex,
+            left: _leftIndex!,
+            right: _rightIndex!,
             i: _iIndex,
-            j: _jIndex,
-            p: _pivotIndex,
+            j: _jIndex!,
+            p: _pivotIndex!,
             pivot: pivotValue,
           ),
         );
@@ -184,25 +184,25 @@ class QuickSortProvider extends ChangeNotifier {
         }
         _rightIndex = queue.removeLast();
         _leftIndex = queue.removeLast();
-        _iIndex = _leftIndex;
+        _iIndex = _leftIndex!;
         _jIndex = _rightIndex;
         _state = QuickSortState.findPivot;
       }
       if (isFindPivotState) {
-        _pivotIndex = (_iIndex + (_jIndex - _iIndex) / 2).toInt();
-        pivotValue = _array[_pivotIndex];
+        _pivotIndex = (_iIndex + (_jIndex! - _iIndex) / 2).toInt();
+        pivotValue = _array[_pivotIndex!];
         _state = QuickSortState.partition;
         stepForward();
       } else if (isPartitionState) {
-        if (_iIndex <= _jIndex) {
+        if (_iIndex <= _jIndex!) {
           _state = QuickSortState.findLeftMax;
         } else {
-          if (_iIndex < _rightIndex) {
+          if (_iIndex < _rightIndex!) {
             queue.addLast(_iIndex);
-            queue.addLast(_rightIndex);
+            queue.addLast(_rightIndex!);
           }
-          if (_leftIndex < _iIndex - 1) {
-            queue.addLast(_leftIndex);
+          if (_leftIndex! < _iIndex - 1) {
+            queue.addLast(_leftIndex!);
             queue.addLast(_iIndex - 1);
           }
           if (queue.isEmpty) {
@@ -219,11 +219,11 @@ class QuickSortProvider extends ChangeNotifier {
         }
       } else if (isFindRightMinState) {
         if (jThValue > pivotValue)
-          _jIndex -= 1;
+          _jIndex = _jIndex! - 1;
         else
           _state = QuickSortState.compare;
       } else if (isCompareState) {
-        if (_iIndex <= _jIndex) {
+        if (_iIndex <= _jIndex!) {
           _oldArray = List<int>.from(array);
           _updateArray(_swap(_array, _iIndex, _jIndex), notify: false);
           _state = QuickSortState.swap;
@@ -232,7 +232,7 @@ class QuickSortProvider extends ChangeNotifier {
         }
       } else if (isSwapState) {
         _iIndex += 1;
-        _jIndex -= 1;
+        _jIndex = _jIndex! - 1;
         _state = QuickSortState.partition;
       }
 //      notifyListeners();
@@ -276,6 +276,7 @@ class QuickSortProvider extends ChangeNotifier {
   }
 
   bool get canGoBack => _history.isNotEmpty;
+
   bool get canGoForward => !isCompleted;
 }
 

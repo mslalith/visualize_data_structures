@@ -9,11 +9,10 @@ import 'package:visualize_data_structures/core/utils/app_utils.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/header_bar.dart';
 import 'package:visualize_data_structures/core/widgets/settings_fab.dart';
-
-import 'quick_sort_bottom_bar.dart';
-import 'quick_sort_data_view.dart';
-import 'quick_sort_provider.dart';
-import 'quick_sort_visualizer.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_bottom_bar.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_data_view.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/quick_sort/quick_sort_visualizer.dart';
 
 class QuickSort extends StatefulWidget {
   static const String KEY = 'sort_quick_sort';
@@ -23,7 +22,7 @@ class QuickSort extends StatefulWidget {
 }
 
 class _QuickSortState extends State<QuickSort> {
-  QuickSortProvider provider;
+  late QuickSortProvider provider;
 
   @override
   void initState() {
@@ -36,7 +35,7 @@ class _QuickSortState extends State<QuickSort> {
     provider = Provider.of<QuickSortProvider>(context);
     InputControlsProvider inputControlsProvider =
         Provider.of<InputControlsProvider>(context);
-    RawKeyEvent keyEvent = inputControlsProvider.keyEvent;
+    RawKeyEvent? keyEvent = inputControlsProvider.keyEvent;
     if (keyEvent != null && inputControlsProvider.isCurrentKeyUp) {
       LogicalKeyboardKey key = keyEvent.data.logicalKey;
       if (key == LogicalKeyboardKey.space ||
@@ -51,17 +50,17 @@ class _QuickSortState extends State<QuickSort> {
         AppUtils.isAnyDialogShowing = true;
         Future.delayed(
           Duration.zero,
-              () async {
+          () async {
             Provider.of<ConfettiProvider>(context, listen: false)
                 .playConfetti();
-            bool retry = await AppUtils.showCompletionDialog(
+            final bool? retry = await AppUtils.showCompletionDialog(
               context,
               [
                 'The array is sorted.',
                 'If you didn\'t understood, you can always try again.',
               ],
             );
-            if (retry) provider.generateArray();
+            if (retry != null && retry) provider.generateArray();
           },
         );
       }
@@ -85,7 +84,7 @@ class _QuickSortMobile extends StatefulWidget {
 }
 
 class _QuickSortMobileState extends State<_QuickSortMobile> {
-  QuickSortProvider provider;
+  late QuickSortProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +134,8 @@ class _QuickSortMobileState extends State<_QuickSortMobile> {
 
 class _QuickSortSettingsFab extends StatelessWidget {
   const _QuickSortSettingsFab({
-    Key key,
-    @required this.provider,
+    Key? key,
+    required this.provider,
   }) : super(key: key);
 
   final QuickSortProvider provider;

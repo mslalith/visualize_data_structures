@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'info_edit_widget.dart';
+import 'package:visualize_data_structures/core/widgets/info_edit_widget.dart';
 
 class SettingSliderView extends StatelessWidget {
   final String title;
@@ -9,16 +8,16 @@ class SettingSliderView extends StatelessWidget {
   final double max;
   final int divisions;
   final Function(double) onChanged;
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   const SettingSliderView({
-    Key key,
-    @required this.title,
-    @required this.value,
-    @required this.min,
-    @required this.max,
-    @required this.divisions,
-    @required this.onChanged,
+    Key? key,
+    required this.title,
+    required this.value,
+    required this.min,
+    required this.max,
+    required this.divisions,
+    required this.onChanged,
     this.backgroundColor,
   }) : super(key: key);
 

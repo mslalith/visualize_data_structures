@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'bubble_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_provider.dart';
 
 class BubbleSortVisualizer extends StatefulWidget {
   @override
@@ -14,9 +13,9 @@ class BubbleSortVisualizer extends StatefulWidget {
 
 class _BubbleSortVisualizerState extends State<BubbleSortVisualizer>
     with SingleTickerProviderStateMixin {
-  BubbleSortProvider provider;
+  late BubbleSortProvider provider;
   double nodeSize = 30.0;
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -45,7 +44,8 @@ class _BubbleSortVisualizerState extends State<BubbleSortVisualizer>
         selector: (_, provider) => provider.array,
         builder: (_, list, __) {
           if (provider.state == BubbleSortState.swap &&
-              !animationController.isAnimating && !provider.isCompleted) {
+              !animationController.isAnimating &&
+              !provider.isCompleted) {
             provider.isSwapping = true;
             animationController.forward();
           }
@@ -128,8 +128,7 @@ class _BubbleSortVisualizerState extends State<BubbleSortVisualizer>
 
   double _getLeft(Set<int> set, int index) {
     double defaultValue = index * (nodeSize + 1);
-    if (set.isEmpty)
-      return defaultValue;
+    if (set.isEmpty) return defaultValue;
 
     int minIndex = Math.min(set.first, set.last);
     int maxIndex = Math.max(set.first, set.last);

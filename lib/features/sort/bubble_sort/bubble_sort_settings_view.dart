@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 import 'package:visualize_data_structures/core/widgets/setting_slider_view.dart';
-
-import 'bubble_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/bubble_sort/bubble_sort_provider.dart';
 
 class BubbleSortSettingsView extends StatefulWidget {
   @override
@@ -11,7 +10,7 @@ class BubbleSortSettingsView extends StatefulWidget {
 }
 
 class _BubbleSortSettingsViewState extends State<BubbleSortSettingsView> {
-  BubbleSortProvider provider;
+  late BubbleSortProvider provider;
 
   @override
   Widget build(BuildContext context) {

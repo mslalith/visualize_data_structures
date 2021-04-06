@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 import 'package:visualize_data_structures/core/widgets/setting_slider_view.dart';
-
-import 'binary_search_provider.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_provider.dart';
 
 class BinarySearchSettingsView extends StatefulWidget {
   @override
-  _BinarySearchSettingsViewState createState() => _BinarySearchSettingsViewState();
+  _BinarySearchSettingsViewState createState() =>
+      _BinarySearchSettingsViewState();
 }
 
 class _BinarySearchSettingsViewState extends State<BinarySearchSettingsView> {
-  BinarySearchProvider provider;
+  late BinarySearchProvider provider;
 
   @override
   Widget build(BuildContext context) {

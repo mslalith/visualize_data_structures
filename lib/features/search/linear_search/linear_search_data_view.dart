@@ -6,8 +6,7 @@ import 'package:visualize_data_structures/core/fonts/fonts.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'linear_search_provider.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_provider.dart';
 
 class LinearSearchDataView extends StatefulWidget {
   @override
@@ -15,11 +14,12 @@ class LinearSearchDataView extends StatefulWidget {
 }
 
 class _LinearSearchDataViewState extends State<LinearSearchDataView> {
-  LinearSearchProvider provider;
+  late LinearSearchProvider provider;
 
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<LinearSearchProvider>(context);
+
     return ResponsiveBuilder(
       builder: (_, sizingInfo) {
         return Column(
@@ -106,7 +106,7 @@ class _LinearSearchDataViewState extends State<LinearSearchDataView> {
               SizedBox(width: 16.0),
               Text(
                 '=',
-                style: Theme.of(context).textTheme.headline,
+                style: Theme.of(context).textTheme.headline5,
               ),
               SizedBox(width: 16.0),
               NodeWidget<int>(
@@ -130,22 +130,20 @@ class _LinearSearchDataViewState extends State<LinearSearchDataView> {
             provider.currentValue == provider.searchValue
                 ? 'found the value at index ${provider.iIndex}, so we return ${provider.iIndex}'
                 : provider.iIndex < provider.arraySize
-                ? 'so we move onto next value'
-                : 'value not found in the array so we return -1',
+                    ? 'so we move onto next value'
+                    : 'value not found in the array so we return -1',
             textAlign: TextAlign.center,
           ),
         ],
       ),
     );
 
-    if (isMobile)
-      child = Expanded(child: child);
+    if (isMobile) child = Expanded(child: child);
 
     // Since RawKeyboardListener is not working properly in release mode.
     // The next and previous buttons are made visible.
     // Once the bug is fixed by the Flutter team, the below line will be removed.
     isMobile = true;
-
 
     return Card(
       color: Colors.transparent,

@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'selection_sort_provider.dart';
+import 'package:visualize_data_structures/features/sort/selection_sort/selection_sort_provider.dart';
 
 class SelectionSortVisualizer extends StatefulWidget {
   @override
-  _SelectionSortVisualizerState createState() => _SelectionSortVisualizerState();
+  _SelectionSortVisualizerState createState() =>
+      _SelectionSortVisualizerState();
 }
 
 class _SelectionSortVisualizerState extends State<SelectionSortVisualizer>
     with SingleTickerProviderStateMixin {
-  SelectionSortProvider provider;
+  late SelectionSortProvider provider;
   double nodeSize = 30.0;
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -45,7 +45,8 @@ class _SelectionSortVisualizerState extends State<SelectionSortVisualizer>
         selector: (_, provider) => provider.array,
         builder: (_, list, __) {
           if (provider.state == SelectionSortState.swap &&
-              !animationController.isAnimating && !provider.isCompleted) {
+              !animationController.isAnimating &&
+              !provider.isCompleted) {
             provider.isSwapping = true;
             animationController.forward();
           }
@@ -101,11 +102,11 @@ class _SelectionSortVisualizerState extends State<SelectionSortVisualizer>
           end: 0,
         )
             .animate(
-          CurvedAnimation(
-            parent: animationController,
-            curve: Interval(0, 0.33),
-          ),
-        )
+              CurvedAnimation(
+                parent: animationController,
+                curve: Interval(0, 0.33),
+              ),
+            )
             .value;
       } else if (animationController.value > 2 * (1 / 3)) {
         return Tween<double>(
@@ -113,11 +114,11 @@ class _SelectionSortVisualizerState extends State<SelectionSortVisualizer>
           end: defaultValue,
         )
             .animate(
-          CurvedAnimation(
-            parent: animationController,
-            curve: Interval(0.66, 1),
-          ),
-        )
+              CurvedAnimation(
+                parent: animationController,
+                curve: Interval(0.66, 1),
+              ),
+            )
             .value;
       } else {
         return 0;
@@ -128,8 +129,7 @@ class _SelectionSortVisualizerState extends State<SelectionSortVisualizer>
 
   double _getLeft(Set<int> set, int index) {
     double defaultValue = index * (nodeSize + 1);
-    if (set.isEmpty)
-      return defaultValue;
+    if (set.isEmpty) return defaultValue;
 
     int minIndex = Math.min(set.first, set.last);
     int maxIndex = Math.max(set.first, set.last);
@@ -139,11 +139,11 @@ class _SelectionSortVisualizerState extends State<SelectionSortVisualizer>
         end: defaultValue + (maxIndex - minIndex) * (nodeSize + 1),
       )
           .animate(
-        CurvedAnimation(
-          parent: animationController,
-          curve: Interval(0.33, 0.66),
-        ),
-      )
+            CurvedAnimation(
+              parent: animationController,
+              curve: Interval(0.33, 0.66),
+            ),
+          )
           .value;
     } else if (index == maxIndex) {
       return Tween<double>(
@@ -151,11 +151,11 @@ class _SelectionSortVisualizerState extends State<SelectionSortVisualizer>
         end: defaultValue + (minIndex - maxIndex) * (nodeSize + 1),
       )
           .animate(
-        CurvedAnimation(
-          parent: animationController,
-          curve: Interval(0.33, 0.66),
-        ),
-      )
+            CurvedAnimation(
+              parent: animationController,
+              curve: Interval(0.33, 0.66),
+            ),
+          )
           .value;
     }
     return defaultValue;

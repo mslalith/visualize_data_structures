@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/made_using_flutter.dart';
-
-import 'brand_info.dart';
-import 'nav_list.dart';
+import 'package:visualize_data_structures/features/navbar/brand_info.dart';
+import 'package:visualize_data_structures/features/navbar/nav_list.dart';
 
 class NavBar extends StatelessWidget {
   @override

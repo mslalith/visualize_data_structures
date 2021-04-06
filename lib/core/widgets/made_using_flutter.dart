@@ -16,12 +16,12 @@ class MadeUsingFlutter extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Made Using',
-                style: Theme.of(context).textTheme.body1,
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               SizedBox(height: 2.0),
               Text(
                 'Flutter',
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.headline6,
               ),
             ],
           ),

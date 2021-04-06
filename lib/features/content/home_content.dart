@@ -26,7 +26,7 @@ class _HomeContentState extends State<HomeContent> with AfterLayoutMixin {
     isFirstRun = preferences.getBool(AppConstants.isFirstRun) ?? true;
     if (isFirstRun) {
       AppUtils.closeAnyDialogIfVisible(context);
-//      if (!AppUtils.isMobile) AppUtils.showUsageDialog(context);
+      // if (!AppUtils.isMobile) AppUtils.showUsageDialog(context);
       await preferences.setBool(AppConstants.isFirstRun, false);
     }
     setState(() {});
@@ -47,8 +47,8 @@ class _HomeContentState extends State<HomeContent> with AfterLayoutMixin {
 
           return InputControls(
             child: CrossFade<Widget>(
-              initialData: provider.currentWidget,
-              data: provider.currentWidget,
+              initialData: provider.currentWidget!,
+              data: provider.currentWidget!,
               builder: (Widget child) => child,
             ),
           );

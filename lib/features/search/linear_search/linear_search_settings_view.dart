@@ -3,16 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 import 'package:visualize_data_structures/core/widgets/setting_slider_view.dart';
-
-import 'linear_search_provider.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_provider.dart';
 
 class LinearSearchSettingsView extends StatefulWidget {
   @override
-  _LinearSearchSettingsViewState createState() => _LinearSearchSettingsViewState();
+  _LinearSearchSettingsViewState createState() =>
+      _LinearSearchSettingsViewState();
 }
 
 class _LinearSearchSettingsViewState extends State<LinearSearchSettingsView> {
-  LinearSearchProvider provider;
+  late LinearSearchProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class _LinearSearchSettingsViewState extends State<LinearSearchSettingsView> {
                   child: Checkbox(
                     value: isUnique,
                     checkColor: primaryDarkColor,
-                    onChanged: provider.setIsUnique,
+                    onChanged: (value) => provider.setIsUnique(value!),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                 ),

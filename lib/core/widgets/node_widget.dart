@@ -8,8 +8,8 @@ class NodeWidget<T> extends StatelessWidget {
   final EdgeInsets margin;
 
   const NodeWidget({
-    Key key,
-    @required this.data,
+    Key? key,
+    required this.data,
     this.color = Colors.transparent,
     this.textColor = Colors.white,
     this.size = 30.0,

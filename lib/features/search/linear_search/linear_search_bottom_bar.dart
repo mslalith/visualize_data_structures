@@ -3,9 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/to_remember.dart';
-
-import 'linear_search_provider.dart';
-import 'linear_search_settings_view.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_provider.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_settings_view.dart';
 
 class LinearSearchBottomBar extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class LinearSearchBottomBar extends StatefulWidget {
 }
 
 class _LinearSearchBottomBarState extends State<LinearSearchBottomBar> {
-  LinearSearchProvider provider;
+  late LinearSearchProvider provider;
 
   @override
   Widget build(BuildContext context) {

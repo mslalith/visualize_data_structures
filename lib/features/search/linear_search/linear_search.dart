@@ -10,11 +10,10 @@ import 'package:visualize_data_structures/core/utils/app_utils.dart';
 import 'package:visualize_data_structures/core/widgets/complexity_widget.dart';
 import 'package:visualize_data_structures/core/widgets/header_bar.dart';
 import 'package:visualize_data_structures/core/widgets/settings_fab.dart';
-
-import 'linear_search_bottom_bar.dart';
-import 'linear_search_data_view.dart';
-import 'linear_search_provider.dart';
-import 'linear_search_visualizer.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_bottom_bar.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_data_view.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_provider.dart';
+import 'package:visualize_data_structures/features/search/linear_search/linear_search_visualizer.dart';
 
 class LinearSearch extends StatefulWidget {
   static const String KEY = 'search_linear_search';
@@ -24,7 +23,7 @@ class LinearSearch extends StatefulWidget {
 }
 
 class _LinearSearchState extends State<LinearSearch> {
-  LinearSearchProvider provider;
+  late LinearSearchProvider provider;
 
   @override
   void initState() {
@@ -35,13 +34,14 @@ class _LinearSearchState extends State<LinearSearch> {
   @override
   Widget build(BuildContext context) {
     provider = Provider.of<LinearSearchProvider>(context);
+    if (provider.array.isEmpty) return SizedBox.shrink();
+
     InputControlsProvider inputControlsProvider =
         Provider.of<InputControlsProvider>(context);
-    RawKeyEvent keyEvent = inputControlsProvider.keyEvent;
+    RawKeyEvent? keyEvent = inputControlsProvider.keyEvent;
     if (keyEvent != null &&
         keyEvent.runtimeType.toString() == InputControlsProvider.KEY_EVENT_UP) {
       LogicalKeyboardKey key = keyEvent.data.logicalKey;
-      print('TTT key = $key |');
       if (key == LogicalKeyboardKey.space ||
           key == LogicalKeyboardKey.arrowRight)
         provider.stepForward();
@@ -57,14 +57,14 @@ class _LinearSearchState extends State<LinearSearch> {
           () async {
             Provider.of<ConfettiProvider>(context, listen: false)
                 .playConfetti();
-            bool retry = await AppUtils.showCompletionDialog(
+            final bool? retry = await AppUtils.showCompletionDialog(
               context,
               [
                 'You found the element at index ${provider.iIndex}.',
                 'If you didn\'t understood, you can always try again.',
               ],
             );
-            if (retry) provider.generateArray();
+            if (retry != null && retry) provider.generateArray();
           },
         );
       }
@@ -88,7 +88,7 @@ class _LinearSearchMobile extends StatefulWidget {
 }
 
 class __LinearSearchMobileState extends State<_LinearSearchMobile> {
-  LinearSearchProvider provider;
+  late LinearSearchProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -140,8 +140,8 @@ class _LinearSearchSettingsFab extends StatelessWidget {
   final LinearSearchProvider provider;
 
   const _LinearSearchSettingsFab({
-    Key key,
-    @required this.provider,
+    Key? key,
+    required this.provider,
   }) : super(key: key);
 
   @override
@@ -211,9 +211,9 @@ class _LinearSearchSettingsFab extends StatelessWidget {
               );
             },
           ),
-          Selector<LinearSearchProvider, bool>(
+          Selector<LinearSearchProvider, bool?>(
             selector: (_, pro) => pro.isUnique,
-            builder: (_, bool isUnique, __) {
+            builder: (_, bool? isUnique, __) {
               return Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -224,7 +224,7 @@ class _LinearSearchSettingsFab extends StatelessWidget {
                     child: Checkbox(
                       value: isUnique,
                       checkColor: primaryDarkColor,
-                      onChanged: provider.setIsUnique,
+                      onChanged: (value) => provider.setIsUnique(value!),
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
-
-import 'clickable_icon.dart';
-import 'fluent_button.dart';
+import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
+import 'package:visualize_data_structures/core/widgets/fluent_button.dart';
 
 class SettingsFab extends StatefulWidget {
   final List<Widget> children;
@@ -11,9 +10,9 @@ class SettingsFab extends StatefulWidget {
   final VoidCallback generateArrayMethod;
 
   SettingsFab({
-    Key key,
-    @required this.children,
-    @required this.generateArrayMethod,
+    Key? key,
+    required this.children,
+    required this.generateArrayMethod,
     dividerColor,
     this.iconColor = Colors.white,
   })  : dividerColor = dividerColor ?? Colors.white.withOpacity(0.8),
@@ -25,10 +24,9 @@ class SettingsFab extends StatefulWidget {
 
 class _SettingsFabState extends State<SettingsFab>
     with SingleTickerProviderStateMixin {
-  AnimationController animationController;
+  late AnimationController animationController;
   double openWidth = 260;
   double closeWidth = 40.0;
-  bool showScrollbar;
 
   @override
   void initState() {
@@ -45,7 +43,7 @@ class _SettingsFabState extends State<SettingsFab>
         closeWidth + (animationController.value * (openWidth - closeWidth));
     double borderRadius =
         8.0 + ((1 - animationController.value) * (48.0 - 8.0));
-    Color color =
+    Color? color =
         ColorTween(begin: backgroundHighlighter, end: primaryDarkColor)
             .animate(animationController)
             .value;
@@ -74,7 +72,7 @@ class _SettingsFabState extends State<SettingsFab>
               children: <Widget>[
                 Text(
                   'Settings',
-                  style: Theme.of(context).textTheme.subhead,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
                 Spacer(),
                 ClickableIcon(
@@ -111,10 +109,11 @@ class _SettingsFabState extends State<SettingsFab>
                     _onTapSettings();
                   },
                 ),
-                FlatButton(
-                  onPressed: _onTapSettings,
+                FluentButton(
+                  text: 'Done',
+                  backgroundColor: Colors.transparent,
                   textColor: Colors.white,
-                  child: Text('Done'),
+                  onPressed: _onTapSettings,
                 ),
               ],
             ),

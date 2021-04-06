@@ -6,8 +6,7 @@ import 'package:visualize_data_structures/core/fonts/fonts.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
 import 'package:visualize_data_structures/core/widgets/node_widget.dart';
-
-import 'binary_search_provider.dart';
+import 'package:visualize_data_structures/features/search/binary_search/binary_search_provider.dart';
 
 class BinarySearchDataView extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class BinarySearchDataView extends StatefulWidget {
 }
 
 class _BinarySearchDataViewState extends State<BinarySearchDataView> {
-  BinarySearchProvider provider;
+  late BinarySearchProvider provider;
 
   @override
   Widget build(BuildContext context) {
@@ -193,8 +192,10 @@ class _BinarySearchDataViewState extends State<BinarySearchDataView> {
           Text(
             provider.isLeftInterval
                 ? '>'
-                : provider.isRightInterval ? '<' : '=',
-            style: Theme.of(context).textTheme.headline,
+                : provider.isRightInterval
+                    ? '<'
+                    : '=',
+            style: Theme.of(context).textTheme.headline5,
           ),
           SizedBox(width: 16.0),
           Column(
@@ -263,7 +264,7 @@ find mid for the interval using above formula''';
   }
 
   Widget _getDetailIcon() {
-    IconData iconData;
+    IconData? iconData;
     if (provider.isRightInterval)
       iconData = FontAwesomeIcons.handPointRight;
     else if (provider.currentValue == provider.searchValue)

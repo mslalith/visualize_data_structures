@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
-
-import 'clickable_icon.dart';
+import 'package:visualize_data_structures/core/widgets/clickable_icon.dart';
 
 class InfoEditWidget extends StatefulWidget {
   final Widget infoChild;
@@ -10,10 +9,10 @@ class InfoEditWidget extends StatefulWidget {
   final Color color;
 
   InfoEditWidget({
-    Key key,
-    @required this.infoChild,
-    @required this.editChild,
-    @required this.icon,
+    Key? key,
+    required this.infoChild,
+    required this.editChild,
+    required this.icon,
     color,
   })  : color = color ?? backgroundHighlighter,
         super(key: key);
@@ -24,9 +23,8 @@ class InfoEditWidget extends StatefulWidget {
 
 class _InfoEditWidgetState extends State<InfoEditWidget>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
+  late AnimationController controller;
   Size size = Size.zero;
-  Widget editChild;
 
   @override
   void initState() {

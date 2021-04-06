@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:after_layout/after_layout.dart';
+import 'package:flutter/material.dart';
 import 'package:visualize_data_structures/core/themes/themes.dart';
 
 class ToRemember extends StatefulWidget {
@@ -8,10 +8,10 @@ class ToRemember extends StatefulWidget {
   final List<String> points;
 
   const ToRemember({
-    Key key,
+    Key? key,
     this.width = 300.0,
     this.height = 210.0,
-    @required this.points,
+    required this.points,
   }) : super(key: key);
 
   @override
@@ -19,8 +19,8 @@ class ToRemember extends StatefulWidget {
 }
 
 class _ToRememberState extends State<ToRemember> with AfterLayoutMixin {
-  ScrollController scrollController;
-  bool showFab;
+  late ScrollController scrollController;
+  late bool showFab;
 
   @override
   void initState() {
@@ -74,7 +74,7 @@ class _ToRememberState extends State<ToRemember> with AfterLayoutMixin {
                       SizedBox(width: 10.0),
                       Text(
                         'to Remember',
-                        style: Theme.of(context).textTheme.title,
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                     ],
                   ),
